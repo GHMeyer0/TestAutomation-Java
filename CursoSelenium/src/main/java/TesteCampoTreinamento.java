@@ -9,13 +9,18 @@ import org.openqa.selenium.support.ui.Select;
 public class TesteCampoTreinamento {
 
 	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
+	WebDriver driver = new ChromeDriver();
 	
-	@Test
-	public void testeTextField() throws InterruptedException
+	public void iniciaBrowser() 
 	{
-		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
+	}
+	
+	@Test
+	public void deveInteragirTextField() throws InterruptedException
+	{
+		this.iniciaBrowser();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Gabriel");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Helko Meyer");
 		Assert.assertEquals("Gabriel", driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
@@ -25,9 +30,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirComTextArea() 
 	{
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get(baseUrl);
+		this.iniciaBrowser();
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Teste de Area");
 		Assert.assertEquals("Teste de Area", driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
 		driver.quit();
@@ -37,9 +40,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirComRadioButton() 
 	{
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get(baseUrl);
+		this.iniciaBrowser();
 		driver.findElement(By.id("elementosForm:sexo:0")).click();
 		Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
 		driver.quit();
@@ -48,9 +49,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirComCheckBox() 
 	{
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get(baseUrl);
+		this.iniciaBrowser();
 		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
 		Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
 		driver.quit();
@@ -59,9 +58,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirComSelect() 
 	{
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get(baseUrl);
+		this.iniciaBrowser();
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(element);
 		combo.selectByIndex(4);
