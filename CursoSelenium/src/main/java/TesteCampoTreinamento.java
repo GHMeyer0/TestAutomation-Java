@@ -42,4 +42,15 @@ public class TesteCampoTreinamento {
 		Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
 		driver.quit();
 	}
+	
+	@Test
+	public void deveInteragirComCheckBox() 
+	{
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get(baseUrl);
+		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
+		Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
+		driver.quit();
+	}
 }
