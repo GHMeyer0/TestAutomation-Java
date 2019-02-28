@@ -12,7 +12,7 @@ public class TesteGoogle {
 		WebDriver driver = new FirefoxDriver();
 		driver.get("https://google.com");
 		//System.out.println(driver.getTitle());
-		Assert.assertEquals("Yahoo", driver.getTitle());
+		Assert.assertEquals("Google", driver.getTitle());
 		
 	}
 	
