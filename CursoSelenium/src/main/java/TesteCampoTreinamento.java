@@ -22,11 +22,15 @@ public class TesteCampoTreinamento {
 		driver.quit();
 	}
 	
+	@Test
 	public void deveInteragirComTextArea() 
 	{
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().fullscreen();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		
+		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Teste de Area");
+		Assert.assertEquals("Teste de Area", driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
 		
 	}
 }
