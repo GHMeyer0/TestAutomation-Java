@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TesteGoogle {
@@ -9,7 +10,8 @@ public class TesteGoogle {
 	public void teste() 
 	{
 		//System.setProperty("webdrive.gecko.driver", "C:\\Selenium\\geckodriver.exe");
-		WebDriver driver = new FirefoxDriver();
+		//WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new ChromeDriver();
 		driver.get("https://google.com");
 		//System.out.println(driver.getTitle());
 		Assert.assertEquals("Google", driver.getTitle());
