@@ -11,7 +11,9 @@ public class TesteGoogle {
 	{
 		//System.setProperty("webdrive.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		//WebDriver driver = new FirefoxDriver();
+		//WebDriver driver = new InternetExplorerDriver();
 		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
 		driver.get("https://google.com");
 		//System.out.println(driver.getTitle());
 		Assert.assertEquals("Google", driver.getTitle());
