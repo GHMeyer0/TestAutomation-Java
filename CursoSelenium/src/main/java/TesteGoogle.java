@@ -17,7 +17,7 @@ public class TesteGoogle {
 		driver.get("https://google.com");
 		//System.out.println(driver.getTitle());
 		Assert.assertEquals("Google", driver.getTitle());
-		
+		driver.quit();
 	}
 	
 	
