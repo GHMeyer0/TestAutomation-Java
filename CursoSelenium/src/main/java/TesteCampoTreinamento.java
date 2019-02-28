@@ -2,7 +2,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class TesteCampoTreinamento {
 
@@ -53,4 +55,18 @@ public class TesteCampoTreinamento {
 		Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
 		driver.quit();
 	}
+	
+	@Test
+	public void deveInteragirComSelect() 
+	{
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get(baseUrl);
+		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(element);
+		combo.selectByIndex(4);
+		
+		//driver.quit();
+	}
+	
 }
