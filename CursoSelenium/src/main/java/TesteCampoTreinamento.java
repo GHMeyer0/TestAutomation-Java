@@ -61,9 +61,11 @@ public class TesteCampoTreinamento {
 		this.iniciaBrowser();
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(element);
-		combo.selectByIndex(4);
-		
-		//driver.quit();
+		//combo.selectByIndex(4);
+		//combo.selectByValue("especializacao");
+		combo.selectByVisibleText("Superior");
+		Assert.assertEquals("Superior", combo.getFirstSelectedOption().getText());
+		driver.quit();
 	}
 	
 }
