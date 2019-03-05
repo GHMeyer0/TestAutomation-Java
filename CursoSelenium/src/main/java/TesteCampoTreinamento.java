@@ -79,5 +79,26 @@ public class TesteCampoTreinamento {
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getOptions();
 		Assert.assertEquals(8, ((java.util.List<WebElement>) options).size());
+		driver.quit();
+	}
+	
+	@Test
+	public void deveInteragirComMultiSelect() 
+	{
+		this.iniciaBrowser();
+		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
+		Select combo = new Select(element);
+		combo.selectByVisibleText("Natacao");
+		combo.selectByVisibleText("Corrida");
+		
+		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
+		
+		Assert.assertEquals(2, allSelectedOptions.size());
+		
+		combo.deselectByVisibleText("Corrida");
+		allSelectedOptions = combo.getAllSelectedOptions();
+		Assert.assertEquals(1, allSelectedOptions.size());
+		
+		
 	}
 }
