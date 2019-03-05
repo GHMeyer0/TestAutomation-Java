@@ -1,10 +1,13 @@
 import org.junit.Assert;
+import java.util.List;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+//import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class TesteCampoTreinamento {
 
@@ -68,4 +71,13 @@ public class TesteCampoTreinamento {
 		driver.quit();
 	}
 	
+	@Test
+	public void deveVerificarValoresDoSelect() 
+	{
+		this.iniciaBrowser();
+		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(element);
+		List<WebElement> options = combo.getOptions();
+		Assert.assertEquals(8, ((java.util.List<WebElement>) options).size());
+	}
 }
