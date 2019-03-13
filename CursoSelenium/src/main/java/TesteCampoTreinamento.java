@@ -120,6 +120,7 @@ public class TesteCampoTreinamento {
 		this.iniciaBrowser();
 		driver.findElement(By.linkText("Voltar")).click();
 		Assert.fail();
+		driver.quit();
 	}
 	
 	@Test
@@ -127,7 +128,9 @@ public class TesteCampoTreinamento {
 	{
 		this.iniciaBrowser();
 		driver.findElement(By.tagName("body"));
-		System.out.println(driver.findElement(By.tagName("body")).getText());
+		//System.out.println(driver.findElement(By.tagName("body")).getText());
+		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Sobrenome:"));
+		driver.quit();
 		
 	}
 }
