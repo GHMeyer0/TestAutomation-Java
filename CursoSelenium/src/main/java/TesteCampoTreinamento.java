@@ -114,12 +114,11 @@ public class TesteCampoTreinamento {
 	}
 	
 	@Test
-	@Ignore
 	public void deveInteragirComLink() 
 	{
 		this.iniciaBrowser();
 		driver.findElement(By.linkText("Voltar")).click();
-		Assert.fail();
+		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
 		driver.quit();
 	}
 	
@@ -127,9 +126,13 @@ public class TesteCampoTreinamento {
 	public void deveBuscarTextosNaPagina() 
 	{
 		this.iniciaBrowser();
-		driver.findElement(By.tagName("body"));
+		//driver.findElement(By.tagName("body"));
 		//System.out.println(driver.findElement(By.tagName("body")).getText());
-		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Sobrenome:"));
+		//Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Sobrenome:"));
+		Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
+		
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
+		
 		driver.quit();
 		
 	}
