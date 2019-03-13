@@ -98,7 +98,25 @@ public class TesteCampoTreinamento {
 		combo.deselectByVisibleText("Corrida");
 		allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(1, allSelectedOptions.size());
-		
-		
 	}
+	
+	@Test
+	public void deveInteragirComBotoes() 
+	{
+		this.iniciaBrowser();
+		driver.findElement(By.id("buttonSimple")).click();
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
