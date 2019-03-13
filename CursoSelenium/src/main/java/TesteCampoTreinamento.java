@@ -1,4 +1,6 @@
 import org.junit.Assert;
+import org.junit.Ignore;
+
 import java.util.List;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -14,7 +16,7 @@ public class TesteCampoTreinamento {
 	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
 	WebDriver driver = new ChromeDriver();
 	
-	public void iniciaBrowser() 
+	private void iniciaBrowser() 
 	{
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
@@ -98,15 +100,36 @@ public class TesteCampoTreinamento {
 		combo.deselectByVisibleText("Corrida");
 		allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(1, allSelectedOptions.size());
+		driver.quit();
 	}
 	
 	@Test
 	public void deveInteragirComBotoes() 
 	{
 		this.iniciaBrowser();
-		driver.findElement(By.id("buttonSimple")).click();
+		WebElement botao = driver.findElement(By.id("buttonSimple"));
+		botao.click();
+		
+		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 	}
 	
+	@Test
+	@Ignore
+	public void deveInteragirComLink() 
+	{
+		this.iniciaBrowser();
+		driver.findElement(By.linkText("Voltar")).click();
+		Assert.fail();
+	}
+	
+	@Test
+	public void deveBuscarTextosNaPagina() 
+	{
+		this.iniciaBrowser();
+		driver.findElement(By.tagName("body"));
+		System.out.println(driver.findElement(By.tagName("body")).getText());
+		
+	}
 }
 
 
