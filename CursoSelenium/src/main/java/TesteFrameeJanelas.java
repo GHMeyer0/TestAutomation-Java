@@ -39,16 +39,20 @@ public class TesteFrameeJanelas {
 		driver.close();
 		driver.switchTo().window("");
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Simmm");
-		//driver.quit();
+		driver.quit();
 	}
 	@Test
 	public void DeveInteragirComJanelasSemTitulo () 
 	{
 		this.iniciaBrowser();
 		driver.findElement(By.id("buttonPopUpHard")).click();
-		System.out.println(driver.getWindowHandle());
-		System.out.println(driver.getWindowHandles());
-		driver.switchTo().window("CDwindow-8E04E00CE782E69938BBC803D354EC55");
+		//System.out.println(driver.getWindowHandle());
+		//System.out.println(driver.getWindowHandles());
+		driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
+		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Simmm");
+		driver.quit();
 	}
 
 }
