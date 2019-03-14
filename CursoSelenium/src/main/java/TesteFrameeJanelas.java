@@ -41,5 +41,14 @@ public class TesteFrameeJanelas {
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Simmm");
 		//driver.quit();
 	}
+	@Test
+	public void DeveInteragirComJanelasSemTitulo () 
+	{
+		this.iniciaBrowser();
+		driver.findElement(By.id("buttonPopUpHard")).click();
+		System.out.println(driver.getWindowHandle());
+		System.out.println(driver.getWindowHandles());
+		driver.switchTo().window("CDwindow-8E04E00CE782E69938BBC803D354EC55");
+	}
 
 }
