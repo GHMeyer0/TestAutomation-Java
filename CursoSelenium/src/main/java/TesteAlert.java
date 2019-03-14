@@ -51,6 +51,24 @@ public class TesteAlert {
 		alert.dismiss();
 		Assert.assertEquals("Negado", alert.getText());
 		alert.accept();
+		driver.quit();
 		
+	}
+	
+	@Test
+	public void DeveInteragirComAlertPrompt() 
+	{
+		this.iniciaBrowser();
+		driver.findElement(By.id("prompt")).click();
+		Alert alert = driver.switchTo().alert();
+		Assert.assertEquals("Digite um numero", alert.getText());
+		alert.sendKeys("50");
+		alert.accept();
+		
+		Assert.assertEquals("Era 50?", alert.getText());
+		alert.accept();
+		
+		Assert.assertEquals(":D", alert.getText());
+		alert.accept();
 	}
 }
