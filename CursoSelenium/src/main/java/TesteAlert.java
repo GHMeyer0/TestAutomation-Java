@@ -1,30 +1,33 @@
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.Ignore;
-
-import java.util.List;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class TesteAlert {
 
 	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
-	WebDriver driver = new ChromeDriver();
+	WebDriver driver;
 	
-	private void iniciaBrowser() 
+	@Before
+	public void inicializa() 
 	{
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
+	}
+	
+	@After
+	public void finaliza() {
+		driver.quit();
 	}
 	
 	@Test
 	public void DeveInteragirComAlertSimples() 
 	{
-		this.iniciaBrowser();
 		driver.findElement(By.id("alert")).click();
 		Alert alert = driver.switchTo().alert();
 		String text = alert.getText();
@@ -37,7 +40,6 @@ public class TesteAlert {
 	@Test
 	public void DeveInteragirComAlertConfirm() 
 	{
-		this.iniciaBrowser();
 		driver.findElement(By.id("confirm")).click();
 		Alert alert = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alert.getText());
@@ -50,15 +52,12 @@ public class TesteAlert {
 		Assert.assertEquals("Confirm Simples", alert.getText());
 		alert.dismiss();
 		Assert.assertEquals("Negado", alert.getText());
-		alert.accept();
-		driver.quit();
-		
+		alert.accept();		
 	}
 	
 	@Test
 	public void DeveInteragirComAlertPrompt() 
 	{
-		this.iniciaBrowser();
 		driver.findElement(By.id("prompt")).click();
 		Alert alert = driver.switchTo().alert();
 		Assert.assertEquals("Digite um numero", alert.getText());

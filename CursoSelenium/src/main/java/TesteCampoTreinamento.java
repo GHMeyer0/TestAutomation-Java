@@ -13,8 +13,9 @@ import org.openqa.selenium.support.ui.Select;
 
 public class TesteCampoTreinamento {
 
-	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
-	WebDriver driver;
+	private String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
+	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializa() 
@@ -22,6 +23,7 @@ public class TesteCampoTreinamento {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
+		dsl = new DSL(driver);
 	}
 	
 	@After
@@ -33,10 +35,9 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirTextField() throws InterruptedException
 	{
-		
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Gabriel");
-		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Helko Meyer");
-		Assert.assertEquals("Gabriel", driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
+		dsl.Escreve("elementosForm:nome", "Gabriel");
+		dsl.Escreve("elementosForm:sobrenome", "Helko Meyer");
+		Assert.assertEquals("Gabriel", dsl.obterValorCampo("elementosForm:nome"));
 		
 	}
 	
