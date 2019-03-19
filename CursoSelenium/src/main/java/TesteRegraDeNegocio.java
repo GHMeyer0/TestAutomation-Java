@@ -6,18 +6,26 @@ import org.junit.*;
 
 public class TesteRegraDeNegocio {
 	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
-	WebDriver driver = new ChromeDriver();
+	WebDriver driver;
 	
-	private void iniciaBrowser() 
+	@Before
+	public void inicializa() 
 	{
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
 	}
 	
+	@After
+	public void finaliza() {
+		driver.quit();
+	}
+	
+	
+	
 	@Test
 	public void DeveTestarRegradeNegocio() 
 	{
-		this.iniciaBrowser();
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alert = driver.switchTo().alert();
 		Assert.assertEquals("Nome eh obrigatorio", alert.getText());
@@ -51,7 +59,6 @@ public class TesteRegraDeNegocio {
 		alert.accept();
 		new Select(driver.findElement(By.id("elementosForm:esportes"))).deselectByVisibleText("O que eh esporte?");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
-		driver.quit();
 		
 		
 		

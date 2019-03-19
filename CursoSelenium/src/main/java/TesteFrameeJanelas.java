@@ -6,17 +6,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteFrameeJanelas {
 	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
-	WebDriver driver = new ChromeDriver();
+	WebDriver driver;
 	
-	private void iniciaBrowser() 
+	@Before
+	public void inicializa() 
 	{
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
 	}
 	
+	@After
+	public void finaliza() {
+		driver.quit();
+	}
+	
 	@Test
 	public void deveInteragirComFrames() {
-		this.iniciaBrowser();
 		driver.switchTo().frame("frame1");
 		driver.findElement(By.id("frameButton")).click();
 		Alert alert = driver.switchTo().alert();
@@ -26,25 +32,21 @@ public class TesteFrameeJanelas {
 		
 		driver.switchTo().defaultContent();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);
-		driver.quit();
 	}
 	
 	@Test
 	public void DeveInteragirComJanelas () 
 	{
-		this.iniciaBrowser();
 		driver.findElement(By.id("buttonPopUpEasy")).click();
 		driver.switchTo().window("Popup");
 		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
 		driver.close();
 		driver.switchTo().window("");
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Simmm");
-		driver.quit();
 	}
 	@Test
 	public void DeveInteragirComJanelasSemTitulo () 
 	{
-		this.iniciaBrowser();
 		driver.findElement(By.id("buttonPopUpHard")).click();
 		//System.out.println(driver.getWindowHandle());
 		//System.out.println(driver.getWindowHandles());
@@ -52,7 +54,6 @@ public class TesteFrameeJanelas {
 		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
 		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Simmm");
-		driver.quit();
 	}
 
 }

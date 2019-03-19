@@ -11,16 +11,22 @@ public class TesteCadastro {
 		String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
 		WebDriver driver = new ChromeDriver();
 		
-		private void iniciaBrowser() 
+		@Before
+		public void inicializa() 
 		{
+			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 			driver.get(baseUrl);
+		}
+		
+		@After
+		public void finaliza() {
+			driver.quit();
 		}
 		
 		@Test
 		public void DeveRealizarCadastro() 
 		{
-			this.iniciaBrowser();
 			driver.findElement(By.id("elementosForm:nome")).sendKeys("Gabriel");
 			driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Meyer");
 			driver.findElement(By.id("elementosForm:sexo:0")).click();
@@ -45,11 +51,6 @@ public class TesteCadastro {
 			Assert.assertEquals("Escolaridade: superior", driver.findElement(By.id("descEscolaridade")).getText());
 			Assert.assertEquals("Esportes: Natacao Corrida", driver.findElement(By.id("descEsportes")).getText());
 			Assert.assertEquals("Sugestoes: Deveria ter um layout melhor", driver.findElement(By.id("descSugestoes")).getText());
-			
-			driver.quit();
-			
-			
-			
 			
 		}
 }
