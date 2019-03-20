@@ -11,7 +11,7 @@ public class DSL {
 	}
 	
 	
-	public void Escreve(String id_campo, String texto) 
+	public void Escrever(String id_campo, String texto) 
 	{
 		driver.findElement(By.id(id_campo)).sendKeys(texto);
 	}
@@ -20,4 +20,18 @@ public class DSL {
 	{
 		return driver.findElement(By.id(id_campo)).getAttribute("value");
 	}
+	
+	public void Clicar(String id) 
+	{
+		driver.findElement(By.id(id)).click();
+	}
+	
+	public boolean isMarcado(String id) 
+	{
+		return driver.findElement(By.id(id)).isSelected();
+
+	}
 }
+	
+	
+

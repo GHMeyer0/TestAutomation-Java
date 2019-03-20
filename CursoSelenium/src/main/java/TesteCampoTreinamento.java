@@ -38,35 +38,27 @@ public class TesteCampoTreinamento {
 		dsl.Escreve("elementosForm:nome", "Gabriel");
 		dsl.Escreve("elementosForm:sobrenome", "Helko Meyer");
 		Assert.assertEquals("Gabriel", dsl.obterValorCampo("elementosForm:nome"));
-		
 	}
 	
 	@Test
 	public void deveInteragirComTextArea() 
 	{
-		
-		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Teste de Area");
-		Assert.assertEquals("Teste de Area", driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
-		
-		
+		dsl.Escrever("elementosForm:sugestoes", "Teste de Area");
+		Assert.assertEquals("Teste de Area", dsl.obterValorCampo("elementosForm:sugestoes"));
 	}
 	
 	@Test
 	public void deveInteragirComRadioButton() 
 	{
-		
-		driver.findElement(By.id("elementosForm:sexo:0")).click();
-		Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
-		
+		dsl.Clicar("elementosForm:sexo:0");
+		Assert.assertTrue(dsl.isMarcado("elementosForm:sexo:0"));
 	}
 	
 	@Test
 	public void deveInteragirComCheckBox() 
 	{
-		
-		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
-		Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
-		
+		dsl.Clicar("elementosForm:comidaFavorita:0");
+		Assert.assertTrue(dsl.isMarcado("elementosForm:comidaFavorita:0"));	
 	}
 	
 	@Test
