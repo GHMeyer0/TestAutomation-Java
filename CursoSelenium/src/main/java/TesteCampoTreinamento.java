@@ -35,8 +35,8 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirTextField() throws InterruptedException
 	{
-		dsl.Escreve("elementosForm:nome", "Gabriel");
-		dsl.Escreve("elementosForm:sobrenome", "Helko Meyer");
+		dsl.Escrever("elementosForm:nome", "Gabriel");
+		dsl.Escrever("elementosForm:sobrenome", "Helko Meyer");
 		Assert.assertEquals("Gabriel", dsl.obterValorCampo("elementosForm:nome"));
 	}
 	
@@ -64,12 +64,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirComSelect() 
 	{
-		
-		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
-		Select combo = new Select(element);
-		//combo.selectByIndex(4);
-		//combo.selectByValue("especializacao");
-		combo.selectByVisibleText("Superior");
+		dsl.selecionarSelect("elementosForm:escolaridade", "Superior");
 		Assert.assertEquals("Superior", combo.getFirstSelectedOption().getText());
 		
 	}
