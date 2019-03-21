@@ -65,8 +65,7 @@ public class TesteCampoTreinamento {
 	public void deveInteragirComSelect() 
 	{
 		dsl.selecionarSelect("elementosForm:escolaridade", "Superior");
-		Assert.assertEquals("Superior", combo.getFirstSelectedOption().getText());
-		
+		Assert.assertEquals("Superior", dsl.obterValorSelect("elementosForm:escolaridade"));
 	}
 	
 	@Test
@@ -83,17 +82,15 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirComMultiSelect() 
 	{
+		dsl.selecionarSelect("elementosForm:esportes", "Natacao");
+		dsl.selecionarSelect("elementosForm:esportes", "Corrida");
 		
-		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
-		Select combo = new Select(element);
-		combo.selectByVisibleText("Natacao");
-		combo.selectByVisibleText("Corrida");
 		
-		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
+		//List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
 		
-		Assert.assertEquals(2, allSelectedOptions.size());
+		//Assert.assertEquals(2, allSelectedOptions.size());
 		
-		combo.deselectByVisibleText("Corrida");
+		dsl.desmarcarSelect("elementosForm:esportes", "Corrida");
 		allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(1, allSelectedOptions.size());
 		
@@ -103,10 +100,8 @@ public class TesteCampoTreinamento {
 	public void deveInteragirComBotoes() 
 	{
 		
-		WebElement botao = driver.findElement(By.id("buttonSimple"));
-		botao.click();
-		
-		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+		dsl.Clicar("buttonSimples");
+		Assert.assertEquals("Obrigado!", dsl.obterValorAtributo("buttonSimples","value"));
 	}
 	
 	@Test

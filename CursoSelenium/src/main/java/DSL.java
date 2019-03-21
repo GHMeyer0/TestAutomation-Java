@@ -22,6 +22,12 @@ public class DSL {
 		return driver.findElement(By.id(id_campo)).getAttribute("value");
 	}
 	
+	public String obterValorAtributo(String id, String atributo) 
+	{
+		return driver.findElement(By.id(id)).getAttribute(atributo);
+	}
+	
+	
 	public void Clicar(String id) 
 	{
 		driver.findElement(By.id(id)).click();
@@ -38,6 +44,20 @@ public class DSL {
 		WebElement element = driver.findElement(By.id("id"));
 		Select combo = new Select(element);
 		combo.selectByVisibleText(valor);
+	}
+	
+	public void desmarcarSelect(String id, String valor) 
+	{
+		WebElement element = driver.findElement(By.id("id"));
+		Select combo = new Select(element);
+		combo.deselectByVisibleText(valor);
+	}
+	
+	public String obterValorSelect(String id) 
+	{
+		WebElement element = driver.findElement(By.id("id"));
+		Select combo = new Select(element);
+		return combo.getFirstSelectedOption().getText();
 	}
 }
 	
