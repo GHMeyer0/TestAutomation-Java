@@ -71,12 +71,9 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveVerificarValoresDoSelect() 
 	{
-		
-		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
-		Select combo = new Select(element);
-		List<WebElement> options = combo.getOptions();
-		Assert.assertEquals(8, ((java.util.List<WebElement>) options).size());
-		
+		Assert.assertEquals(8, dsl.obterQuantidadeOpçoesSelect("elementosForm:escolaridade"));
+		String opçoesSelect = dsl.obterValoresSelect("elementosForm:escolaridade");
+		Assert.assertTrue(opçoesSelect.contains("Superior"));
 	}
 	
 	@Test
@@ -84,16 +81,9 @@ public class TesteCampoTreinamento {
 	{
 		dsl.selecionarSelect("elementosForm:esportes", "Natacao");
 		dsl.selecionarSelect("elementosForm:esportes", "Corrida");
-		
-		
-		//List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
-		
-		//Assert.assertEquals(2, allSelectedOptions.size());
-		
+		Assert.assertEquals(2, dsl.obterQuantidadeOpçoesSelecionadas("elementosForm:esportes"));
 		dsl.desmarcarSelect("elementosForm:esportes", "Corrida");
-		allSelectedOptions = combo.getAllSelectedOptions();
-		Assert.assertEquals(1, allSelectedOptions.size());
-		
+		Assert.assertEquals(1, dsl.obterQuantidadeOpçoesSelecionadas("elementosForm:esportes"));
 	}
 	
 	@Test
@@ -107,21 +97,15 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveInteragirComLink() 
 	{
-		
-		driver.findElement(By.linkText("Voltar")).click();
-		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
-		
+		dsl.clicarLink("Voltar");
+		Assert.assertEquals("Voltou!", dsl.obterTexto(By.id("resultado")));
 	}
 	
 	@Test
 	public void deveBuscarTextosNaPagina() 
 	{
-		//driver.findElement(By.tagName("body"));
-		//System.out.println(driver.findElement(By.tagName("body")).getText());
-		//Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Sobrenome:"));
-		Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
-		
-		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
+		Assert.assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", dsl.obterTexto(By.className("facilAchar")));
 		
 		
 		
