@@ -73,7 +73,7 @@ public class TesteCampoTreinamento {
 	{
 		Assert.assertEquals(8, dsl.obterQuantidadeOpçoesSelect("elementosForm:escolaridade"));
 		String opçoesSelect = dsl.obterValoresSelect("elementosForm:escolaridade");
-		Assert.assertTrue(opçoesSelect.contains("Superior"));
+		Assert.assertTrue(opçoesSelect.containsAll("Superior"));
 	}
 	
 	@Test
