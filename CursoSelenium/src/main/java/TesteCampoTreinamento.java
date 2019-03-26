@@ -1,13 +1,10 @@
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import java.util.List;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 
 //import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
@@ -73,7 +70,7 @@ public class TesteCampoTreinamento {
 	{
 		Assert.assertEquals(8, dsl.obterQuantidadeOpçoesSelect("elementosForm:escolaridade"));
 		String opçoesSelect = dsl.obterValoresSelect("elementosForm:escolaridade");
-		Assert.assertTrue(opçoesSelect.containsAll("Superior"));
+		Assert.assertTrue(opçoesSelect.contains("Superior"));
 	}
 	
 	@Test
@@ -106,9 +103,6 @@ public class TesteCampoTreinamento {
 	{
 		Assert.assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
 		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", dsl.obterTexto(By.className("facilAchar")));
-		
-		
-		
 	}
 }
 

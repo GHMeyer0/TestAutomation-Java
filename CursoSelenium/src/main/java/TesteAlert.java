@@ -11,6 +11,7 @@ public class TesteAlert {
 
 	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
 	WebDriver driver;
+	DSL dsl;
 	
 	@Before
 	public void inicializa() 
@@ -18,6 +19,7 @@ public class TesteAlert {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(baseUrl);
+		dsl = new DSL(driver);
 	}
 	
 	@After

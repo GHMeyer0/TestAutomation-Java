@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -73,7 +71,7 @@ public class DSL {
 	{
 		WebElement element = driver.findElement(By.id(id));
 		Select combo = new Select(element);
-		return combo.getAllSelectedOptions();
+		return combo.getAllSelectedOptions().toString();
 		
 	}
 	
