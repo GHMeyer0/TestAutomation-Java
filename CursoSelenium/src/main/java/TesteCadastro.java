@@ -17,6 +17,7 @@ public class TesteCadastro {
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 			driver.get(baseUrl);
+			dsl = new DSL(driver);
 		}
 		
 		@After
