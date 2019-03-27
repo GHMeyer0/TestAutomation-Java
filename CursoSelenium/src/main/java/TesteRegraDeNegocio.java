@@ -1,12 +1,13 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.*;
 import org.junit.*;
 
 public class TesteRegraDeNegocio {
-	String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
-	WebDriver driver;
+	
+	private String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
+	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializa() 

@@ -9,6 +9,7 @@ public class TesteCadastro {
 
 		String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
 		WebDriver driver = new ChromeDriver();
+		private CampoTreinamentoPage page;
 		
 		@Before
 		public void inicializa() 
@@ -26,20 +27,17 @@ public class TesteCadastro {
 		@Test
 		public void DeveRealizarCadastro() 
 		{
-			driver.findElement(By.id("elementosForm:nome")).sendKeys("Gabriel");
-			driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Meyer");
-			driver.findElement(By.id("elementosForm:sexo:0")).click();
-			driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
-			driver.findElement(By.id("elementosForm:comidaFavorita:1")).click();
-			driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
-			new Select(driver.findElement(By.id("elementosForm:escolaridade"))).selectByVisibleText("Superior");
-		    
-			new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("Natacao");
-			new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("Corrida");
-			
-			driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Deveria ter um layout melhor");
-			
-			driver.findElement(By.id("elementosForm:cadastrar")).click();
+			page.setNome("Gabriel");
+			page.setSobrenome("Helko Meyer");
+			page.setSexoMasculino();
+			page.setComidaCarne();
+			page.setComidaFrango();
+			page.setComidaPizza();
+			page.setEscolaridade("Superior");
+			page.setEsporte("Natacao");
+			page.setEsporte("Corrida");
+			page.setSujestao("Deveria ter um layout melhor");
+			page.cadastrar();
 			
 			//Assert.assertEquals("Cadastrado!", driver.findElement(By.id("resultado")).getText());
 			Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado"));
