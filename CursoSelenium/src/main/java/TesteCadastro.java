@@ -10,7 +10,7 @@ public class TesteCadastro {
 		String baseUrl = "file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html";
 		WebDriver driver = new ChromeDriver();
 		private CampoTreinamentoPage page;
-		
+		private DSL dsl;
 		@Before
 		public void inicializa() 
 		{
