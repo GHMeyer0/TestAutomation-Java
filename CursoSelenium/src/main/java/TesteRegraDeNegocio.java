@@ -59,14 +59,7 @@ public class TesteRegraDeNegocio {
 		Assert.assertEquals("Voce faz esporte ou nao?", alert.getText());
 		alert.accept();
 		new Select(driver.findElement(By.id("elementosForm:esportes"))).deselectByVisibleText("O que eh esporte?");
-		driver.findElement(By.id("elementosForm:cadastrar")).click();
-		
-		
-		
-
-		
-		
-		
+		driver.findElement(By.id("elementosForm:cadastrar")).click();		
 		
 	}
 	
